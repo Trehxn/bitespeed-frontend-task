@@ -8,18 +8,12 @@ import ReactFlow, {
 } from "reactflow";
 import "reactflow/dist/style.css";
 
-const initialNodes = [
-  {
-    id: "1",
-    position: { x: 0, y: 0 },
-    data: { label: "input" },
-    type: "input",
-  },
-  { id: "2", position: { x: 0, y: 100 }, data: { label: "target" } },
-];
+import TextNode from "@/components/TextNode";
+
+const nodeTypes = { textNode: TextNode };
 
 const Flow: React.FC<{}> = () => {
-  const [nodes, _, onNodesChange] = useNodesState(initialNodes);
+  const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
 
   const onConnect = useCallback(
@@ -27,14 +21,35 @@ const Flow: React.FC<{}> = () => {
     [setEdges],
   );
 
+  const onDrop = (e: React.DragEvent<HTMLSpanElement>) => {
+    e.preventDefault();
+    const x = e.clientX;
+    const y = e.clientY;
+    const label = e.dataTransfer.getData("message");
+    setNodes((prev) => [
+      ...prev,
+      {
+        id: (prev[prev.length - 1]?.id || "") + "1",
+        data: { label: `${label} ${prev.length + 1}` },
+        position: { x, y },
+        type: "textNode",
+      },
+    ]);
+  };
+
   return (
-    <div className="h-full w-full">
+    <div
+      className="h-full w-full"
+      onDragOver={(e) => e.preventDefault()}
+      onDrop={onDrop}
+    >
       <ReactFlow
         nodes={nodes}
         edges={edges}
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         onConnect={onConnect}
+        nodeTypes={nodeTypes}
       />
     </div>
   );
