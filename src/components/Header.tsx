@@ -10,11 +10,15 @@ const NOTIFICATION_TIMER = 3000; // timer to auto hide the notification after
 // component to render the header for the layout
 const Header: React.FC<{}> = () => {
   const { nodes, edges } = useNodeContext();
-  const [showNotification, setShowNotification] = useState(false); // state to manage success or failure
+  const [showNotification, setShowNotification] = useState(false); // state to display success or failure notifications
 
-  const isFlowValid =
-    nodes.length > 1 &&
-    getConnectedEdges(nodes, edges).length === nodes.length - 1; // check flow validity by checking if the num of nodes is greater than 1 and if more than one node has an empty target handle
+  // filter nodes with empty targets
+  const nodesWithEmptyTargets = nodes.filter((node) => {
+    // check if the node has any incoming edges
+    const hasIncomingEdges = edges.some((edge) => edge.target === node.id);
+    return !hasIncomingEdges;
+  });
+  const isFlowValid = nodes.length > 1 && nodesWithEmptyTargets.length <= 1; // check flow validity by checking if the num of nodes is greater than 1 and if more than one node has an empty target handle
 
   const handleSave = () => {
     // show notification for the provided timer on button click
