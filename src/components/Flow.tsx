@@ -19,10 +19,6 @@ const Flow: React.FC<{}> = () => {
           {
             ...params,
             markerEnd: { type: MarkerType.ArrowClosed },
-            style: {
-              color: "red",
-              fill: "red",
-            },
           },
           eds,
         ),
