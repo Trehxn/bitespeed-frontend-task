@@ -27,7 +27,7 @@ const Sidebar: React.FC<{}> = () => {
       return (
         <div className="p-3">
           <span
-            className="flex max-w-max flex-col items-center justify-center gap-1 rounded border-2 border-blue-900/60 px-12 py-2 font-semibold text-blue-900/70"
+            className="flex max-w-max flex-col items-center justify-center gap-1 rounded border-2 border-blue-900/60 px-12 py-2 font-semibold text-blue-900/70 hover:cursor-grab active:cursor-grabbing"
             draggable
             onDragStart={(e) => {
               e.dataTransfer.setData("message", "test message");
