@@ -5,3 +5,7 @@
 .custom-shadow {
   box-shadow: 0 4px 18px rgba(27, 27, 27, 0.4);
 }
+
+.react-flow__panel.react-flow__attribution {
+  display: none;
+}
