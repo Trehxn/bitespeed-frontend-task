@@ -15,7 +15,7 @@ const TextNode: React.FC<NodeProps> = ({ data }) => {
           <FaWhatsapp size={12} color="#25D366" />
         </div>
       </div>
-      <div className="mb-1 px-4 py-3 font-semibold text-gray-700">
+      <div className="mb-1 px-4 py-3 font-semibold text-gray-600">
         {data.label}
       </div>
       <NodeHandle type="source" position={Position.Right} />
