@@ -5,6 +5,7 @@ import { BiMessageRoundedDetail } from "react-icons/bi";
 import NodeHandle from "@/components/NodeHandle";
 import whatsappImage from "../../public/whatsapp-logo.png";
 
+// custom node component that renders the text message node
 const TextNode: React.FC<NodeProps> = ({ data, selected }) => {
   return (
     <div
