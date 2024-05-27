@@ -1,5 +1,6 @@
 import { Handle, HandleProps } from "reactflow";
 
+// reusable styled handle for react flow nodes
 const NodeHandle: React.FC<HandleProps> = ({ type, position }) => {
   return (
     <Handle

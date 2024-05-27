@@ -7,7 +7,7 @@ import Notification from "@/components/Notification";
 import useNodeContext from "@/hooks/useNodeContext";
 
 const NOTIFICATION_TIMER = 3000; // timer to auto hide the notification after
-// Component to render the header for the layout
+// component to render the header for the layout
 const Header: React.FC<{}> = () => {
   const { nodes, edges } = useNodeContext();
   const [showNotification, setShowNotification] = useState(false); // state to manage success or failure

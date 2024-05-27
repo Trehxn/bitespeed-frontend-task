@@ -1,5 +1,6 @@
 type Props = React.ButtonHTMLAttributes<HTMLButtonElement>;
 
+// reusable button component
 const Button: React.FC<Props> = ({ children, className, ...rest }) => {
   return (
     <button

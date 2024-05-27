@@ -23,6 +23,7 @@ type NodeContext = {
   onEdgesChange: OnEdgesChange;
 };
 
+// context to store data and operations related to nodes and edges
 const Context = createContext<NodeContext>({
   nodes: [],
   setNodes: () => {},
@@ -33,6 +34,7 @@ const Context = createContext<NodeContext>({
 });
 const Provider = Context.Provider;
 
+// context provider which will provide the context value to any children rendered inside the wrapper
 export const NodeContextProvider = ({
   children,
 }: {
@@ -56,6 +58,7 @@ export const NodeContextProvider = ({
   return <Provider value={value}>{children}</Provider>;
 };
 
+// hook that allows to obtain values of the node context
 const useNodeContext = () => {
   const context = useContext(Context);
   if (!context) {
