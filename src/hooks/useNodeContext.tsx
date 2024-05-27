@@ -1,4 +1,10 @@
-import { useContext, createContext, Dispatch, SetStateAction } from "react";
+import {
+  useContext,
+  createContext,
+  Dispatch,
+  SetStateAction,
+  useMemo,
+} from "react";
 import {
   useNodesState,
   Node,
@@ -34,15 +40,28 @@ export const NodeContextProvider = ({
 }) => {
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
-  return (
-    <Provider
-      value={{ nodes, setNodes, onNodesChange, edges, setEdges, onEdgesChange }}
-    >
-      {children}
-    </Provider>
+
+  const value = useMemo(
+    () => ({
+      nodes,
+      setNodes,
+      onNodesChange,
+      edges,
+      setEdges,
+      onEdgesChange,
+    }),
+    [nodes, setNodes, onNodesChange, edges, setEdges, onEdgesChange],
   );
+
+  return <Provider value={value}>{children}</Provider>;
 };
 
-const useNodeContext = () => useContext(Context);
+const useNodeContext = () => {
+  const context = useContext(Context);
+  if (!context) {
+    console.error("useNodeContext must be used within a NodeContextProvider");
+  }
+  return context;
+};
 
 export default useNodeContext;
