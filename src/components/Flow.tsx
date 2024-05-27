@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import ReactFlow, { useEdgesState, addEdge, Edge, Connection } from "reactflow";
+import ReactFlow, { addEdge, Edge, Connection } from "reactflow";
 import "reactflow/dist/style.css";
 
 import TextNode from "@/components/TextNode";
@@ -9,8 +9,8 @@ const HEADER_HEIGHT = 60;
 const nodeTypes = { textNode: TextNode };
 
 const Flow: React.FC<{}> = () => {
-  const { nodes, setNodes, onNodesChange } = useNodeContext();
-  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+  const { nodes, setNodes, onNodesChange, edges, setEdges, onEdgesChange } =
+    useNodeContext();
 
   const onConnect = useCallback(
     (params: Edge | Connection) => setEdges((eds) => addEdge(params, eds)),
