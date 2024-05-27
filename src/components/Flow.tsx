@@ -1,19 +1,15 @@
 import { useCallback } from "react";
-import ReactFlow, {
-  useNodesState,
-  useEdgesState,
-  addEdge,
-  Edge,
-  Connection,
-} from "reactflow";
+import ReactFlow, { useEdgesState, addEdge, Edge, Connection } from "reactflow";
 import "reactflow/dist/style.css";
 
 import TextNode from "@/components/TextNode";
+import useNodeContext from "@/hooks/useNodeContext";
 
+const HEADER_HEIGHT = 60;
 const nodeTypes = { textNode: TextNode };
 
 const Flow: React.FC<{}> = () => {
-  const [nodes, setNodes, onNodesChange] = useNodesState([]);
+  const { nodes, setNodes, onNodesChange } = useNodeContext();
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
 
   const onConnect = useCallback(
@@ -24,7 +20,7 @@ const Flow: React.FC<{}> = () => {
   const onDrop = (e: React.DragEvent<HTMLSpanElement>) => {
     e.preventDefault();
     const x = e.clientX;
-    const y = e.clientY;
+    const y = e.clientY - HEADER_HEIGHT;
     const label = e.dataTransfer.getData("message");
     setNodes((prev) => [
       ...prev,
