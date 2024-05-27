@@ -73,7 +73,7 @@ const Sidebar: React.FC<{}> = () => {
   };
 
   return (
-    <div className="flex basis-1/3 flex-col border-l-2 border-gray-100">
+    <div className="flex basis-1/4 flex-col border-l-2 border-gray-100">
       {renderPanel()}
     </div>
   );
