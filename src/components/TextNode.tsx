@@ -7,7 +7,7 @@ import NodeHandle from "@/components/NodeHandle";
 const TextNode: React.FC<NodeProps> = ({ data, selected }) => {
   return (
     <div
-      className={`custom-shadow min-w-80 overflow-hidden rounded-lg border-2 bg-white ${selected ? "border-blue-500" : ""}`}
+      className={`custom-shadow w-80 overflow-hidden rounded-lg border-2 bg-white ${selected ? "border-blue-500" : ""}`}
     >
       <NodeHandle type="target" position={Position.Left} />
       <div className="flex items-center justify-center bg-teal-200 px-4 py-1">
