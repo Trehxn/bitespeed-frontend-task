@@ -25,17 +25,28 @@ const Sidebar: React.FC<{}> = () => {
   const renderPanel = () => {
     if (!selectedNode) {
       return (
-        <div className="p-3">
-          <span
-            className="flex max-w-max flex-col items-center justify-center gap-1 rounded border-2 border-blue-900/60 px-12 py-2 font-semibold text-blue-900/70 hover:cursor-grab active:cursor-grabbing"
+        <div className="flex flex-col gap-2 p-3">
+          <div
+            className="flex min-w-44 max-w-max flex-col items-center justify-center gap-1 rounded border-2 border-blue-900/60 px-12 py-2 font-semibold text-blue-900/70 hover:cursor-grab active:cursor-grabbing"
             draggable
             onDragStart={(e) => {
+              e.dataTransfer.setData("nodeType", "textNode");
               e.dataTransfer.setData("message", "test message");
             }}
           >
             <BiMessageRoundedDetail size={30} />
             Message
-          </span>
+          </div>
+          <div
+            className="flex min-w-44 max-w-max flex-col items-center justify-center gap-1 rounded border-2 border-blue-900/60 px-12 py-2 font-semibold text-blue-900/70 hover:cursor-grab active:cursor-grabbing"
+            draggable
+            onDragStart={(e) => {
+              e.dataTransfer.setData("nodeType", "");
+              e.dataTransfer.setData("message", "test message");
+            }}
+          >
+            Default
+          </div>
         </div>
       );
     }
