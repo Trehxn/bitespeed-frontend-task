@@ -1,4 +1,3 @@
-import { getConnectedEdges } from "reactflow";
 import { useState } from "react";
 
 import Button from "@/components/Button";
@@ -6,7 +5,7 @@ import Notification from "@/components/Notification";
 
 import useNodeContext from "@/hooks/useNodeContext";
 
-const NOTIFICATION_TIMER = 3000; // timer to auto hide the notification after
+const NOTIFICATION_TIMER = 1500; // timer to auto hide the notification after
 // component to render the header for the layout
 const Header: React.FC<{}> = () => {
   const { nodes, edges } = useNodeContext();
