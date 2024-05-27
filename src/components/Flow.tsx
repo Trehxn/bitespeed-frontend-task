@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import ReactFlow, { addEdge, Edge, Connection } from "reactflow";
+import ReactFlow, { addEdge, Edge, Connection, MarkerType } from "reactflow";
 import "reactflow/dist/style.css";
 
 import TextNode from "@/components/TextNode";
@@ -13,7 +13,20 @@ const Flow: React.FC<{}> = () => {
     useNodeContext();
 
   const onConnect = useCallback(
-    (params: Edge | Connection) => setEdges((eds) => addEdge(params, eds)),
+    (params: Edge | Connection) =>
+      setEdges((eds) =>
+        addEdge(
+          {
+            ...params,
+            markerEnd: { type: MarkerType.ArrowClosed },
+            style: {
+              color: "red",
+              fill: "red",
+            },
+          },
+          eds,
+        ),
+      ),
     [setEdges],
   );
 
