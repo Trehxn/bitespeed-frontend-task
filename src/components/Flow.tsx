@@ -33,8 +33,8 @@ const Flow: React.FC<{}> = () => {
     e.preventDefault();
     const x = e.clientX;
     const y = e.clientY - HEADER_HEIGHT;
-    const nodeType = e.dataTransfer.getData("nodeType");
-    const label = e.dataTransfer.getData("message");
+    const nodeType = e.dataTransfer.getData("nodeType"); // retrieve the node type
+    const label = e.dataTransfer.getData("message"); // retrieve the message to display
     setNodes((prev) => [
       ...prev,
       {
